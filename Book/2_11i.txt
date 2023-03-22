@@ -1,0 +1,11 @@
+Shooting 100.00 10.00
+Baseball 250.00 90.00
+Basketball 500.00 100.00
+Soccer 435.00 80.00
+Fishing 90.00 120.00
+Cafe 500.00 400.00
+Hotdogs 300.00 100.00
+Corn 225.00 90.00
+Nuts 195.00 95.00
+Cards 100.00 10.00
+xxxxxx

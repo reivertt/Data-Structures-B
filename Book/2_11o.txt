@@ -1,0 +1,15 @@
+================ Report ================
+Rankings
+  1.Basketball	400.00
+  2.Soccer	355.00
+  3.Hotdogs	200.00
+  4.Baseball	160.00
+  5.Corn	135.00
+  6.Cafe	100.00
+  7.Nuts	100.00
+  8.Cards	90.00
+  9.Shooting	90.00
+ 10.Fishing	-30.00
+
+Total: 		1600
+========================================
