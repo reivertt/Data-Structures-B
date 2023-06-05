@@ -1,13 +1,25 @@
+/**
+ * Implementasi Binary Search Tree (ADT: BST)
+ * yakni BST yang tidak menyimpan key duplikat (unique key)
+ * 
+ * Dibuat dan ditulis oleh Bayu Laksana
+ * -- tanggal 29 Februrari 2019
+ * Struktur Data 2020
+ * 
+ * Implementasi untuk Bahasa C++
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <vector>
 
-std::vector<int> leaf;
+/* Node structure */
 
 struct BSTNode {
-    BSTNode *left, *right, *parent;
-    int key, distance;
+    BSTNode *left, *right;
+    int key;
 };
+
+/* uniqueBST */
 
 struct BST {
     // Member
@@ -35,9 +47,9 @@ struct BST {
             return false;
     }
 
-    void insert(int value, int distance) {
+    void insert(int value) {
         if (!find(value)) {
-            _root = __insert(_root, value, distance);
+            _root = __insert(_root, value);
             _size++;
         }
     }
@@ -61,68 +73,11 @@ struct BST {
         __postorder(_root);
     }
 
-    int distance(int value) {
-        if (find(value)){
-            std::vector<int> distance, temp = leaf;
-            while(!temp.empty()){
-              if (value == temp.back()) distance.push_back(0);
-              else
-              distance.push_back(findDistWrapper(_root, value, temp.back()));
-              temp.pop_back();
-            }
-            int min = 100000;
-            while(!distance.empty()){
-              if (distance.back() < min) min = distance.back();
-              distance.pop_back();
-            }
-            return min;
-        }
-        return -1;
-    }
-
-    //modify so this has weight
-    int distanceFromRoot(BSTNode* root, int x){
-        if (root->key == x)
-            return 0;
-        else if (root->key > x)
-            return root->left->distance + distanceFromRoot(root->left, x);
-            
-        return root->right->distance + distanceFromRoot(root->right, x);
-    }
-    
-    int distanceBetween2(BSTNode* root, int a, int b){
-        if (!root)
-            return 0;
-            
-        if (root->key > a && root->key > b)
-            return distanceBetween2(root->left, a, b);
-            
-        if (root->key < a && root->key < b) // same path
-            return distanceBetween2(root->right, a, b);
-            
-        if (root->key >= a && root->key <= b)
-            return distanceFromRoot(root, a) + distanceFromRoot(root, b);
-    }
-    
-    int findDistWrapper(BSTNode *root, int a, int b){
-        if (a > b) {
-            int temp = a;
-            a = b;
-            b = temp;
-        }
-        return distanceBetween2(root, a, b);  
-    }
-    
-    void leaves(){
-      __leaf_inorder(_root);
-    }
-
 private:
     // Utility Function
-    BSTNode* __createNode(int value, int distance) {
+    BSTNode* __createNode(int value) {
         BSTNode *newNode = (BSTNode*) malloc(sizeof(BSTNode));
         newNode->key = value;
-        newNode->distance = distance;
         newNode->left = newNode->right = NULL;
         return newNode;
     }
@@ -139,19 +94,14 @@ private:
         return root;
     }
 
-    //how to thingymajig, atau alternative ya lgsg bikin fungsi yg traverse everything trs assigns a parent
-    BSTNode* __insert(BSTNode *root, int value, int distance) {
+    BSTNode* __insert(BSTNode *root, int value) {
         if (root == NULL)
-            return __createNode(value, distance);
+            return __createNode(value);
         
-        if (value < root->key){
-            root->left = __insert(root->left, value, distance);
-            root->left->parent = root;
-        }
-        else if (value > root->key){
-            root->right = __insert(root->right, value, distance);
-            root->right->parent = root;
-        }
+        if (value < root->key)
+            root->left = __insert(root->left, value);
+        else if (value > root->key)
+            root->right = __insert(root->right, value);
         
         return root;
     }
@@ -198,14 +148,6 @@ private:
             __inorder(root->right);
         }
     }
-    
-    void __leaf_inorder(BSTNode *root) {
-        if (root) {
-          __leaf_inorder(root->left);
-          if (root->left == NULL && root->right == NULL) leaf.push_back(root->key);
-          __leaf_inorder(root->right);
-        }
-    }
 
     void __postorder(BSTNode *root) {
         if (root) {
@@ -224,27 +166,26 @@ private:
     }
 };
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
     BST set;
     set.init();
 
-    int n, t, m;
-    scanf("%d %d", &n, &t);
-    set.insert(t, 0);
-    while(n--){
-        int s, d;
-        scanf("%d %d", &s, &d);
-        set.insert(s, d);
-    }
-    
-    set.leaves();
-   
-    scanf("%d", &m);
+    set.insert(6);
+    set.insert(1);
+    set.insert(8);
+    set.insert(12);
+    set.insert(1);
+    set.insert(3);
+    set.insert(7);
 
-    while(m--){
-        int p;
-        scanf("%d", &p);
-        printf("%d\n", set.distance(p));
-    }
+    set.traverseInorder();
+    puts("");
+
+    set.remove(1);
+    set.remove(6);
+    set.remove(8);
+    set.traverseInorder();
+    puts("");
     return 0;
 }
