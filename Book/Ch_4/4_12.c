@@ -1,11 +1,21 @@
 /*
- * Implementasi ADT SInglyList (Singly Linked List) oleh Bayu Laksana
- * Diambil dari Repository Algoritma dan Pemrograman ITS
- */
+Auth: Muhammad Nabil Akhtar Raya Amoriza | 5025221021
+Problem: The children’s game of “count-out” is played as follows: n children (numbered 1 to n) are  \
+arranged in a circle. A sentence consisting of m words is used to eliminate one child at a time     \
+until one child is left.
+Starting at child 1, the children are counted from 1 to m, and the mth child is eliminated.         \
+Starting with the child after the one just eliminated, the children are again counted from 1 to m,  \
+and the mth child eliminated. This is repeated until one child is left. Counting is done circularly,\
+and eliminated children are not counted.
+Write a program to read values for n and m and print the number of the last remaining child. Use a  \
+linked list to hold the children.
+Hint: Let the last node point to the first, creating a circular list.
+*/
 
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define t printf("test\n");
 
 typedef struct snode_t {
     int data;
@@ -17,24 +27,15 @@ typedef struct slist_t {
     SListNode *_head, *_tail;
 } SinglyList;
 
-void slist_init(SinglyList *list);
-bool slist_isEmpty(SinglyList *list);
-void slist_popFront(SinglyList *list);
-void slist_push(SinglyList *list, int value);
-void slist_popBack(SinglyList *list);
-void slist_removeAt(SinglyList *list, int index);
-void slist_remove(SinglyList *list, int value);
-int slist_front(SinglyList *list);
-int slist_back(SinglyList *list);
-int slist_getAt(SinglyList *list, int index);
-
 void slist_init(SinglyList *list) {
     list->_head = NULL;
     list->_tail = NULL;
     list->_size = 0;
 }
 
-bool slist_isEmpty(SinglyList *list) { return (list->_head == NULL); }
+bool slist_isEmpty(SinglyList *list) { 
+    return (list->_head == NULL); 
+}
 
 void slist_popFront(SinglyList *list) {
     if (!slist_isEmpty(list)) {
@@ -214,9 +215,5 @@ int main(int argc, char const *argv[]) {
 
     slist_josephus(&myList);
 
-    // while (myList._head != NULL) {
-    //     printf("%d ", slist_back(&myList));
-    //     slist_popBack(&myList);
-    // }
   return 0;
 }

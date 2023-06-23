@@ -1,12 +1,16 @@
-/*
- * Implementasi ADT Stack (Stack menggunakan Linked List) oleh Bayu Laksana
- * Diambil dari Repository Algoritma dan Pemrograman ITS
- */
+/* 
+Auth: Muhammad Nabil Akhtar Raya Amoriza | 5025221021
+Problem: The digits of an integer are held on a linked list in reverse order, one digit per node.   \
+Write a function that, given pointers to two integers, performs a digit-by-digit addition and       \
+returns a pointer to the digits of the sum stored in reverse order. Note: This idea can be used to  \
+add arbitrarily large integers.
+*/
 
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#define t printf("test\n");
 
 typedef struct stackNode_t {
     int data;
@@ -80,22 +84,6 @@ int main(int argc, char const *argv[]) {
     stack_init(&s_first);
     stack_init(&s_second);
     stack_init(&s_result);
-
-    // char aoi1[20], aoi2[20];
-    // printf("First Number: ");
-    // scanf("%s", aoi1);
-    // printf("Second Number: ");
-    // scanf("%s", aoi2);
-    // int diff = strlen(aoi1) - strlen(aoi2);
-    // if (diff > 0) {
-    //     for (int i = 0; i < diff; i++) stack_push(&s_second, 0);
-    // } else if (diff < 0) {
-    //     for (int i = 0; i < -diff; i++) stack_push(&s_first, 0);
-    // }
-    // for(int i = 0; i < strlen(aoi1); i++){
-    //     stack_push(&s_first, aoi1[i] - '0');
-    //     stack_push(&s_second, aoi2[i] - '0');
-    // }
 
     //first stack -> 975312
     stack_push(&s_first, 9);

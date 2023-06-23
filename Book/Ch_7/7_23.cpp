@@ -1,3 +1,12 @@
+/*
+Auth : Muhammad Nabil Akhtar Raya Amoriza | 5025221021
+Problem : A gambler pays $5 to play the following game. He throws two six-sided dice. If the sum of \
+the two numbers thrown is even, he loses his bet. If the sum is odd, he draws a card from a         \
+standard pack of 52 playing cards. If he draws an ace, 3, 5, 7 or 9, he is paid the value of the    \
+card plus $5 (an ace counts as 1). If he draws any other card, he loses. Write a program to         \
+simulate the playing of 20 games and print the average amount won by the gambler per game.
+*/
+
 #include <iostream>
 #include <time.h>
 
